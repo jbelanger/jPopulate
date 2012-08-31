@@ -22,9 +22,11 @@
         td{ text-align:center;}
         table{background-color:LightGray;font-size:small;}
         .btnFormToJson{margin:10px 0px;}
-        #resultedJson{background-color:LightGray; border:1px solid black; min-height:100px;}
+        #resultedJson{background-color:LightGray; border:1px solid black; min-height:100px;font-size:small;}
         input[type=button]{margin:10px 0px;}
-        textarea{font-size:small;}
+        textarea{font-size:10px;}
+        label{width:75px;display:block;float:left;}
+        td input{float:left; width:125px;}
     </style>
   </head>
   <body>
@@ -86,7 +88,7 @@
             <td><input type="checkbox" value="Book2" data-bind="ISBN" /></td>
             <td>Harry Potter and the Chamber of Secrets</td>
             <td>
-                <label>MemberId </label><input type="text" data-bind="Client.MemberId" />
+                <label>MemberId </label><input type="text" data-bind="Client.MemberId" /><br />
                 <label>Name </label><input type="text" data-bind="Client.Name" />
             </td>
             <td><input type="text" data-bind="ReturnedDate" /></td>
