@@ -1,0 +1,115 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>jPopulate Home</title>
+</head>
+<body>
+<h1>jPopulate</h1>
+
+<ul>
+    <li><a href="#what">What is jPopulate?</a></li>
+    <li><a href="#how">How it works?</a></li>
+    <li><a href="#syntax">About the syntax</a></li>
+    <li><a href="#demos">Demos</a></li>
+    <li><a href="#download">Download</a></li>
+    <li><a href="#contact">Contact</a></li>
+</ul>
+
+<h2 id="what">What is jPopulate?</h2>
+<p>
+    The jPopulate is a jQuery plugin used to auto populate any html element from a javascript object. The object can contains simple literal properties, other objects, arrays and even arrays of objects. The following structure is supported:
+</p>
+<p>    
+    JSON:
+    <pre>
+    {
+        "Literal" : "I am a literal",
+        "Object" : {"Property1" : "prop", "Property2" : "prop2"},
+        "Array": [ "item1", "item2", "item3" ],
+        "ArrayOfObjects" : [ {"SomeProperty" : "value1", "SomeOtherProperty" : "prop"}, {"SomeProperty" : "value2", "SomeOtherProperty" : "prop"} ]
+    }
+    </pre>
+    
+</p>
+<p>It uses caching internally so it can work with very large forms. </p>
+<p>
+Note: Requires jQuery 1.5 or higher.
+</p>
+
+<h2 id="how">How it works?</h2>
+<p>jPopulate uses special attributes set on html elements to identify which properties in the object it needs to bind. </p>
+
+<h3>Example using the json string above: </h3>
+
+Literal binding:
+<pre>
+    &lt;input type="text" data-field="<strong>Literal</strong>" /&gt;
+</pre>
+
+Object binding:
+<pre>
+    &lt;input type="text" data-field="<strong>Object.Property1</strong>" /&gt;
+</pre>
+
+Array binding:
+<pre>
+    &lt;div data-field="<strong>Array/</strong>" &gt;
+        &lt;input type="checkbox" value="item1" /&gt;
+        &lt;input type="checkbox" value="item2" /&gt;
+        &lt;input type="checkbox" value="item3" /&gt;
+    &lt;/div&gt;
+</pre>
+
+Array of objects binding:
+<pre>
+    &lt;table data-field="<strong>ArrayOfObjects/SomeProperty</strong>" &gt;
+        ...
+        &lt;tr data-dataitemid="value1"&gt;
+        &lt;input type="checkbox" value="value1" data-bind="SomeProperty"/&gt;
+        &lt;input type="text" data-bind="SomeOtherProperty" /&gt;
+        &lt;/tr&gt;
+        &lt;tr data-dataitemid="value2"&gt;
+        &lt;input type="checkbox" value="value2" data-bind="SomeProperty"/&gt;
+        &lt;input type="text" data-bind="SomeOtherProperty" /&gt;
+        &lt;/tr&gt;
+        ...
+    &lt;/table&gt;
+</pre>
+
+<h2 id="syntax">About the syntax</h2>
+    <p>The "." is used for accessing some properties of an object. </p>
+    <p>
+        Let's say you have this object
+        <pre>
+            { "myObj" : { "Id" : "1", "Name" : "Joe Smith" }}
+        </pre>
+        The Id property can be bound using 
+        <pre>
+            &lt;input type="text" data-field="myObj.Id" /&gt;
+        </pre>
+    </p>
+    <p>
+    The "/" is used to mark the field as being an array. It is necessary to be able to convert the form back to an object.
+    </p>
+    <p>
+    When working with array of objects, a unique property must also be added after the "/" to tell jPopulate that it needs to bind each dataitemid to this unique property.
+    </p>
+
+<h2 id="demos">Demos</h2>
+<ul>
+    <li><a href="simpledemo.htm">Basic usage demo</a></li>
+    <li><a href="advanceddemo.htm">Advanced usage demo</a></li>
+</ul>
+
+<h2 id="download">Download</h2>
+<ul>
+    <li><a href="jpopulate.js">jpopulate.js</a> (19kb)</li>
+    <li><a href="jpopulate.min.js">jpopulate.min.js</a> (6kb)</li>
+</ul>
+
+<h2 id="contact">Contact</h2>
+Joel Belanger<br />
+<a href="mailto:belanger.joel@gmail.com">Email me for any questions or feedback</a>
+
+</body>
+</html>
