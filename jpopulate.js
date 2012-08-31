@@ -366,6 +366,7 @@
             for (var i = 0; i < arrayToBind.length; i++) {
                 idPropValue = getProperty(arrayToBind[i], idProp);
 
+                if (!$element.data("repeater")[idPropValue.toString()]) return;
                 $.each($element.data("repeater")[idPropValue.toString()], function () {
                     var inputDef = this;
                     var $elementDataBind = inputDef["el"];
