@@ -1,0 +1,142 @@
+﻿<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>jPopulate by jbelanger</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="javascripts/scale.fix.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript"></script>
+    <script src="javascripts/jpopulate.js" type="text/javascript"></script>
+    <script src="http://ajax.cdnjs.com/ajax/libs/json2/20110223/json2.js" type="text/javascript"></script>
+
+    <style type="text/css">
+        .formFiller span{width:300px;display:block;float:left;}
+        .formFiller > div{clear:left; padding:5px;}
+        input[type=button]{margin:10px 0px;}
+        #resultedJson{background-color:LightGray; border:1px solid black; min-height:100px;}
+    </style>
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>jPopulate</h1>
+        <p>A jQuery plugin to auto populate form elements from any javascript object.</p>
+        <p class="view"><a href="https://github.com/jbelanger/jPopulate">View the Project on GitHub <small>jbelanger/jPopulate</small></a></p>
+        <ul>
+          <li><a href="https://github.com/jbelanger/jPopulate/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/jbelanger/jPopulate/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/jbelanger/jPopulate">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+<h1>Basic usage</h1>
+<h3>Javascript object (feel free to change)</h3>
+<textarea style="width:100%;" id="jsonStr">
+{ "UserName":"john.smith","Password":"12345","HasChildren":true,"Diplomas":["HighSchool", "College"], "CivilStatus":"Single","City":"Ottawa","Hobbies":["Skiing", "Golfing"],"Comments":"This is a simple example of the jPopulate plugin." }
+</textarea>
+<br />
+    <input type="button" id="btnBind" value ="Populate" />
+    <input type="button" id="btnReset" value ="Reset" />
+
+<div id="allInput" style="border:1px solid black; padding:10px;" class="formFiller">
+    <div>
+        <span>User name</span>
+        <input type="text" data-field="UserName" />
+    </div>
+    <div>
+        <span>Password</span>
+        <input type="password" data-field="Password" />
+    </div>
+    
+    <div>
+        <span>Has children:</span>
+        <input type="checkbox" data-field="HasChildren" />
+    </div>
+
+    <div>
+        <span>Diplomas:</span>
+        <div data-field="Diplomas/">
+            <input type="checkbox" value="University"/><label>University</label>
+            <input type="checkbox" value="College"/><label>College</label>
+            <input type="checkbox" value="HighSchool"/><label>HighSchool</label>
+        </div>
+    </div>
+
+
+    <div>
+        <span>Civil status</span>
+        <div>
+            <input type="radio" value="Single" name="group" data-field="CivilStatus"/><label>Single</label>
+            <input type="radio" value="CommonLaw" name="group" data-field="CivilStatus"/><label>Living common-law</label>
+            <input type="radio" value="Married" name="group" data-field="CivilStatus"/><label>Married</label>
+        </div>
+    </div>
+    
+    <div>
+        <span>City</span>
+        <select data-field="City">
+            <option value="Montreal">Montreal</option>
+            <option value="Ottawa">Ottawa</option>
+            <option value="Vancouver">Vancouver</option>
+        </select>
+    </div>
+
+    <div>
+        <span>Hobbies</span>
+        <select multiple="multiple" data-field="Hobbies/">
+            <option value="Skiing">Skiing</option>
+            <option value="Mountainbiking">Mountainbiking</option>
+            <option value="Golfing">Golfing</option>
+        </select>
+    </div>
+
+
+    <div>
+        <span>Comments</span>
+        <textarea data-field="Comments"></textarea>
+    </div>
+
+
+
+</div>
+
+<input class="btnFormToJson" type="button" value="Build object" />
+<div id="resultedJson"></div>
+
+<script type="text/javascript">
+
+    $("#allInput").jpopulate();
+
+    $("#btnBind").click(function () {
+        $("#allInput").jpopulate("update", $("#jsonStr").val());
+    });
+
+    $("#btnReset").click(function () {
+        $("#allInput").jpopulate("reset");
+    });
+
+    $(".btnFormToJson").click(function () {
+        var obj = $("#allInput").jpopulate("buildObject");
+        $("#resultedJson").html(JSON.stringify(obj));
+    });
+
+</script>
+      </section>
+    </div>
+    <footer>
+      <p>Project maintained by <a href="https://github.com/jbelanger">jbelanger</a></p>
+      <p>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></p>
+    </footer>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    
+</body>
+</html>
