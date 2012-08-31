@@ -2,9 +2,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title>jPopulate - Advanced usage demo</title>
-    <script src="Scripts/jquery-1.7.2.min.js" type="text/javascript"></script>
-    <script src="Scripts/jpopulate.js" type="text/javascript"></script>
-    <script src="Scripts/jquery.jmsajax.min.js" type="text/javascript"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript"></script>
+    <script src="jpopulate.js" type="text/javascript"></script>
+    <script src="http://ajax.cdnjs.com/ajax/libs/json2/20110223/json2.js" type="text/javascript"></script>
 
     <style type="text/css">
         .formFiller > div{clear:left; padding:5px;}
@@ -152,7 +152,7 @@ function removeNL(s){
 
     $(".btnFormToJson").click(function () {
         var obj = $("table").jpopulate("buildObject");
-        $("#resultedJson").html(msJSON.stringify(obj));
+        $("#resultedJson").html(JSON.stringify(obj));
     });
 
 </script>
