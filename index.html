@@ -85,11 +85,11 @@ Array of objects binding:
 <pre>
 &lt;ul data-field="<strong>ArrayOfObjects/SomeProperty</strong>" &gt;
     ...
-    &lt;li data-dataitemid="value1"&gt;
+    &lt;li&gt;
         &lt;input type="checkbox" value="value1" data-bind="SomeProperty"/&gt;
         &lt;input type="text" data-bind="SomeOtherProperty" /&gt;
     &lt;/li&gt;
-    &lt;li data-dataitemid="value2"&gt;
+    &lt;li&gt;
         &lt;input type="checkbox" value="value2" data-bind="SomeProperty"/&gt;
         &lt;input type="text" data-bind="SomeOtherProperty" /&gt;
     &lt;/li&gt;
@@ -113,7 +113,7 @@ The Id property can be bound using
 The "/" is used to mark the field as being an array. It is necessary to be able to convert the form back to an object.
 </p>
 <p>
-When working with array of objects, a unique property must also be added after the "/" to tell jPopulate that it needs to bind each dataitemid to this unique property.
+When working with array of objects, a unique property must also be added after the "/" to tell jPopulate on which data-bind element it needs to bind to. The data-bind element must be an input type="checkbox", so the user is able to select or deselect items from the list.
 </p>
     
 <h4 id="demos">Demos</h4>
