@@ -205,8 +205,12 @@
                         $containedInputs = $thisElement;
                     else {
                         $containedInputs = $thisElement.find("select, input, textarea");
-                        $("[data-dataitemid]", $thisElement).each(function () {
-                            var idPropValue = $(this).attr("data-dataitemid");
+
+                        var matchingField = dataField.substr(dataField.indexOf("/") + 1);
+                        var t = findRowSiblings($thisElement, matchingField);
+
+                        t.each(function () {
+                            var idPropValue = $("[data-bind=" + matchingField + "]", $(this)).val();
 
                             // Cache list of all dataitems AND their data-bind elements to prevent 
                             // too much DOM reads.
@@ -220,6 +224,29 @@
                     cache[dataField].push($containedInputs);
                 }
             });
+        }
+
+        function findRowSiblings($dataField, fieldKey) {
+            var $dataItems = $dataField.find("[data-bind=" + fieldKey + "]");
+            var $key = $dataItems.first();
+
+            if ($key.length > 0) {
+                var keyVal = $key.val();
+
+                var $secondKey;
+                var secondKeyVal = keyVal;
+
+                while (keyVal == secondKeyVal || !(secondKeyVal)) {
+
+                    $secondKey = $key.parent().next().find("[data-bind=" + fieldKey + "]");
+                    if ($secondKey)
+                        secondKeyVal = $secondKey.val();
+
+                    $key = $key.parent();
+                }
+
+                return $key.nextAll().andSelf();
+            }
         }
 
         ///
